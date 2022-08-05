@@ -90,4 +90,128 @@ RSpec.describe "Hero", type: :request do
     end
   end 
 
+  describe "cannot create a hero without valid attributes" do
+    it "doesn't create a hero without a name" do
+      hero_params = {
+        hero: {
+          age: 29,
+          enjoys: "Listening to 70's jams while cruising through the galaxy",
+          image:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQay-ueFvf3PjCBaFyJJUTkDNFHXwo6lFRVmA&usqp=CAU"
+        }
+      }
+
+      post '/heros', params: hero_params
+      expect(response.status).to eq 422
+      hero - JSON.parse(response.body)
+      expect(hero['name']).to include "can't be blank"
+    end
+
+    it "doesn't create a hero without a age" do
+      hero_params = {
+        hero: {
+          name: "Gamora",
+          enjoys: "Listening to 70's jams while cruising through the galaxy",
+          image:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQay-ueFvf3PjCBaFyJJUTkDNFHXwo6lFRVmA&usqp=CAU"
+        }
+      }
+
+      post '/heros', params: hero_params
+      expect(response.status).to eq 422
+      hero - JSON.parse(response.body)
+      expect(cat['age']).to include "can't be blank"
+    end
+
+    it "doesn't create a hero without a enjoys" do
+      hero_params = {
+        hero: {
+          name: "Gamora",
+          age:29,
+          image:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQay-ueFvf3PjCBaFyJJUTkDNFHXwo6lFRVmA&usqp=CAU"
+        }
+      }
+
+      post '/heros', params: hero_params
+      expect(response.status).to eq 422
+      hero - JSON.parse(response.body)
+      expect(hero['enjoys']).to include "can't be blank"
+    end
+
+    it "doesn't create a hero without a image" do
+      hero_params = {
+        hero: {
+          name: "Gamora",
+          age:29,
+          enjoys: "Listening to 70's jams while cruising through the galaxy"
+        }
+      }
+
+      post '/heros', params: hero_params
+      expect(response.status).to eq 422
+      hero - JSON.parse(response.body)
+      expect(hero['image']).to include "can't be blank"
+    end
+  end
+  
+
+    describe "cannot update a hero without valid attributes" do
+      it "doesn't update a hero without a name" do
+        hero_params = {
+          hero: {
+            age: 29,
+            enjoys: "Listening to 70's jams while cruising through the galaxy",
+            image:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQay-ueFvf3PjCBaFyJJUTkDNFHXwo6lFRVmA&usqp=CAU"
+          }
+        }
+  
+        post '/heros', params: hero_params
+        expect(response.status).to eq 422
+        hero - JSON.parse(response.body)
+        expect(hero['name']).to include "can't be blank"
+      end
+  
+      it "doesn't update a hero without a age" do
+        hero_params = {
+          hero: {
+            name: "Gamora",
+            enjoys: "Listening to 70's jams while cruising through the galaxy",
+            image:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQay-ueFvf3PjCBaFyJJUTkDNFHXwo6lFRVmA&usqp=CAU"
+          }
+        }
+  
+        post '/heros', params: hero_params
+        expect(response.status).to eq 422
+        hero - JSON.parse(response.body)
+        expect(cat['age']).to include "can't be blank"
+      end
+  
+      it "doesn't update a hero without a enjoys" do
+        hero_params = {
+          hero: {
+            name: "Gamora",
+            age:29,
+            image:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQay-ueFvf3PjCBaFyJJUTkDNFHXwo6lFRVmA&usqp=CAU"
+          }
+        }
+  
+        post '/heros', params: hero_params
+        expect(response.status).to eq 422
+        hero - JSON.parse(response.body)
+        expect(hero['enjoys']).to include "can't be blank"
+      end
+  
+      it "doesn't update a hero without a image" do
+        hero_params = {
+          hero: {
+            name: "Gamora",
+            age:29,
+            enjoys: "Listening to 70's jams while cruising through the galaxy"
+          }
+        }
+  
+        post '/heros', params: hero_params
+        expect(response.status).to eq 422
+        hero - JSON.parse(response.body)
+        expect(hero['image']).to include "can't be blank"
+      end
+    end
 end
