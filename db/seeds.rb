@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-heroes = [
+heros = [
     {
         name: "Gamora",
         age: 29,
@@ -35,7 +35,7 @@ heroes = [
     }
 ]
 
-heroes.each do |attributes|
+heros.each do |attributes|
     Hero.create(attributes)
     p "Creating hero #{attributes}"
 end
