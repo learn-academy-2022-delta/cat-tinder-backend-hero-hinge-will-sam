@@ -11,7 +11,7 @@ class HerosController < ApplicationController
             render json: hero 
         else 
             render json: hero.errors, status: 422
-        
+        end
     end
 
     def update
@@ -20,7 +20,8 @@ class HerosController < ApplicationController
         if hero.valid
             render json: hero  
         else
-            render json: hero.errors, status: 422  
+            render json: hero.errors, status: 422
+        end  
     end
 
     def destroy
