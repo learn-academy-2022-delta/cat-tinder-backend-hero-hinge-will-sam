@@ -17,7 +17,7 @@ class HerosController < ApplicationController
     def update
         hero = Hero.find(params[:id])
         hero.update(hero_params)
-        if hero.valid
+        if hero.valid?
             render json: hero  
         else
             render json: hero.errors, status: 422
